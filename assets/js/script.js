@@ -1,20 +1,30 @@
 // DOM ELEMENTS
 
 // JS VARIABLES
-var currentDayEl = moment().format("dddd, MMMM Do");
+var currentDate = moment().format("dddd, MMMM Do");
+var time = [9, 10, 11, 12, 1, 2, 3, 4, 5];
+var midday = "";
 
 function displayDay() {
-  $("#currentDay").html(currentDayEl);
+  $("#currentDay").html(currentDate);
   displayPlanner();
 }
 displayDay();
 
 function displayPlanner() {
-  $(".container").append(
-    "<div class='row'>" +
-      "<p class='col-1 hour time-block pt-3'>9AM</p>" +
-      "<input type='text' value='' class='col-10 description text-area' />" +
-      "<button class='col-1 saveBtn'>save</button>" +
-      "</div>"
-  );
+ for(var i = 0; i < time.length; i++){
+   if (i <= 2){
+     midday = " AM"
+   } else {
+     midday = " PM"
+   }
+   $(".container").append(
+     "<div class='row'>" +
+       "<p class='col-1 hour time-block pt-3'>" + time[i] + midday + "</p>" +
+       "<input type='text' value='' class='col-10 description text-area' />" +
+       "<button class='col-1 saveBtn'>save</button>" +
+       "</div>"
+   );
+
+ }
 }
