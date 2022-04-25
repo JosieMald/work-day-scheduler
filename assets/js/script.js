@@ -1,6 +1,3 @@
-// DOM ELEMENTS
-var saveBtnEl = $('.saveBtn')
-
 // JS VARIABLES
 var currentDate = moment().format("dddd, MMMM Do");
 var currentTime = moment().format("k");
@@ -13,11 +10,11 @@ var icon =
   "<circle cx='12' cy='14' r='2'></circle>" +
   "<polyline points='14 4 14 8 8 8 8 4'></polyline></svg>";
 
+// FUNCTIONS
 function displayDay() {
   $("#currentDay").html(currentDate);
   displayPlanner();
 }
-displayDay();
 
 function displayPlanner() {
   var j = 9;
@@ -28,8 +25,8 @@ function displayPlanner() {
       midday = " PM";
     }
     $(".container").append(
-      "<div class='row'>" +
-        "<p class='col-1 hour time-block pt-3'>" +
+      "<div class='row time-block'>" +
+        "<p class='col-1 hour pt-3'>" +
         time[i] +
         midday +
         "</p>" +
@@ -57,7 +54,25 @@ function displayPlanner() {
   }
 }
 
-$('.saveBtn').click(function(){
-  console.log('clicked');
-})
+// <-- LOCAL STORAGE -->
+$("input[data-number='9']").val(localStorage.getItem("9"));
+$("input[data-number='10']").val(localStorage.getItem("10"));
+$("input[data-number='11']").val(localStorage.getItem("11"));
+$("input[data-number='12']").val(localStorage.getItem("12"));
+$("input[data-number='13']").val(localStorage.getItem("13"));
+$("input[data-number='14']").val(localStorage.getItem("14"));
+$("input[data-number='15']").val(localStorage.getItem("15"));
+$("input[data-number='16']").val(localStorage.getItem("16"));
+$("input[data-number='17']").val(localStorage.getItem("17"));
 
+// EVENT LISTENER
+$(".saveBtn").click(function () {
+  var activity = $(this).siblings("input").val();
+  console.log(activity);
+  var hour = $(this).siblings("input").attr("data-number");
+  console.log(hour);
+  localStorage.setItem(hour, activity);
+});
+
+// FUNCTION CALLS
+displayDay();
