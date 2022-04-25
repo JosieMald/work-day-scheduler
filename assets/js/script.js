@@ -1,4 +1,5 @@
 // DOM ELEMENTS
+var saveBtnEl = $('.saveBtn')
 
 // JS VARIABLES
 var currentDate = moment().format("dddd, MMMM Do");
@@ -55,3 +56,8 @@ function displayPlanner() {
     j++;
   }
 }
+
+$('.saveBtn').click(function(){
+  console.log('clicked');
+})
+
